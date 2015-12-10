@@ -33,6 +33,7 @@
       <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     </config-file>
     <source-file src="src/android/com/voiceittech/plugins/VoiceItCordova.java" target-dir="src/com/voiceittech/plugins"/>
+    <source-file src="src/android/com/voiceittech/plugins/VoiceIt.java" target-dir="src/com/voiceittech/plugins"/>
   </platform>
 
 </plugin>
