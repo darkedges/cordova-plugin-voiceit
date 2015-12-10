@@ -15,6 +15,7 @@ For more information on VoiceIt and its features, see [the website](http://voice
   * [Get Enrollments](#get-enrollments)
   * [Delete Enrollment](#delete-enrollment)
   * [Authentication](#authentication)
+  * [Playback](#playback)
 
 ## Supported Platforms
 
@@ -57,6 +58,87 @@ VoiceIt.getUser({
   email: "cordova@voiceit-tech.com",
   password: "password"
 }, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
+### Delete User
+
+```javascript
+VoiceIt.deleteUser({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
+### Create Enrollment
+
+```javascript
+VoiceIt.createEnrollment({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
+
+### Get Enrollments
+
+```javascript
+VoiceIt.getEnrollments({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
+### Delete Enrollment
+
+```javascript
+VoiceIt.getEnrollments({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password",
+  enrollmentId:"2461"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
+
+### Authentication
+
+```javascript
+VoiceIt.authentication({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password",
+  accuracy: "0",
+  accuracyPasses: "5",
+  accuracyPassIncrement: "2",
+  confidence: "85"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
+### Playback
+
+```javascript
+VoiceIt.playback( function(response) {
   alert('Result: ' + response);
 }, function(error) {
   alert('Error: ' + error);
