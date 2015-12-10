@@ -77,7 +77,7 @@ public class VoiceItCordova extends CordovaPlugin {
 
     if (action.equals("createEnrollment")) {
       outputFile = context.getFilesDir().getAbsoluteFile() + "/"
-        + UUID.randomUUID().toString() + ".m4a";
+      + "voiceitrecording.m4a"
       myRecorder = new MediaRecorder();
       myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       myRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
@@ -102,7 +102,11 @@ public class VoiceItCordova extends CordovaPlugin {
       countDowntimer = new CountDownTimer(seconds * 1000, 1000) {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
+          try{
           stopRecordEnrollment(callbackContext, args.getString(0), args.getString(1), args.getString(2));
+        } catch(Exception ex){
+          System.out.println("Exception Error:"+ex.getMessage());
+        }
         }
       };
       countDowntimer.start();
@@ -111,7 +115,7 @@ public class VoiceItCordova extends CordovaPlugin {
 
     if (action.equals("authentication")) {
       outputFile = context.getFilesDir().getAbsoluteFile() + "/"
-        + UUID.randomUUID().toString() + ".m4a";
+        + "voiceitrecording.m4a";
       myRecorder = new MediaRecorder();
       myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       myRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
@@ -136,7 +140,11 @@ public class VoiceItCordova extends CordovaPlugin {
       countDowntimer = new CountDownTimer(seconds * 1000, 1000) {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
-          stopRecordAuthentication(callbackContext, args.getString(0), args.getString(1), args.getString(2),args.getString(3), args.getString(4), args.getString(5), args.getString(6));
+          try{
+            stopRecordAuthentication(callbackContext, args.getString(0), args.getString(1), args.getString(2),args.getString(3), args.getString(4), args.getString(5), args.getString(6));
+          } catch(Exception ex){
+            System.out.println("Exception Error:"+ex.getMessage());
+          }
         }
       };
       countDowntimer.start();

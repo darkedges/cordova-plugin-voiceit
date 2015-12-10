@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-plugin-voiceit"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        version="0.0.4">
+        version="1.0.1">
 
   <name>VoiceItCordova</name>
 
