@@ -77,7 +77,7 @@ public class VoiceItCordova extends CordovaPlugin {
 
     if (action.equals("createEnrollment")) {
       outputFile = context.getFilesDir().getAbsoluteFile() + "/"
-      + "voiceitrecording.m4a"
+      + "voiceitrecording.m4a";
       myRecorder = new MediaRecorder();
       myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       myRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
@@ -190,13 +190,14 @@ public class VoiceItCordova extends CordovaPlugin {
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
       public void run() {
+        String response = "";
         try{
         VoiceIt myVoiceIt = new VoiceIt(developerID);
-        myVoiceIt.createEnrollment(email,password, outputFile);
+        response = myVoiceIt.createEnrollment(email,password, outputFile);
         } catch(Exception ex){
         System.out.println("Exception Error:"+ex.getMessage());
        }
-        callbackContext.success(outputFile);
+        callbackContext.success(response);
         }
     });
   }
@@ -206,13 +207,14 @@ public class VoiceItCordova extends CordovaPlugin {
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
       public void run() {
+        String response = "";
         try{
           VoiceIt myVoiceIt = new VoiceIt(developerID);
-          myVoiceIt.authentication(email,password, outputFile, accuracy, accuracyPasses, accuracyPassIncrement, confidence);
+          response = myVoiceIt.authentication(email,password, outputFile, accuracy, accuracyPasses, accuracyPassIncrement, confidence);
         } catch(Exception ex){
           System.out.println("Exception Error:"+ex.getMessage());
         }
-        callbackContext.success(outputFile);
+        callbackContext.success(response);
         }
     });
   }
