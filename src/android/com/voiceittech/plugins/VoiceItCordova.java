@@ -68,9 +68,23 @@ public class VoiceItCordova extends CordovaPlugin {
       return true;
     }
 
+    if (action.equals("deleteUser")) {
+      VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
+      String response = myVoiceIt.deleteUser(args.getString(1),args.getString(2));
+      callbackContext.success(response);
+      return true;
+    }
+
     if (action.equals("getEnrollments")) {
       VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
       String response = myVoiceIt.getEnrollments(args.getString(1),args.getString(2));
+      callbackContext.success(response);
+      return true;
+    }
+
+    if (action.equals("deleteEnrollment")) {
+      VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
+      String response = myVoiceIt.deleteEnrollment(args.getString(1),args.getString(2),args.getString(3));
       callbackContext.success(response);
       return true;
     }

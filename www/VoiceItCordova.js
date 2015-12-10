@@ -4,6 +4,10 @@ VoiceItCordova.prototype.getUser = function(options, successCallback, errorCallb
   cordova.exec(successCallback, errorCallback, "VoiceItCordova", "getUser", [options.developerID, options.email, options.password]);
 };
 
+VoiceItCordova.prototype.deleteUser = function(options, successCallback, errorCallback) {
+  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "deleteUser", [options.developerID, options.email, options.password]);
+};
+
 VoiceItCordova.prototype.createUser = function(options, successCallback, errorCallback) {
   cordova.exec(successCallback, errorCallback, "VoiceItCordova", "createUser", [options.developerID, options.email, options.password, options.firstName, options.lastName]);
 };
@@ -18,6 +22,10 @@ VoiceItCordova.prototype.getEnrollments = function(options, successCallback, err
 
 VoiceItCordova.prototype.createEnrollment = function(options, successCallback, errorCallback) {
   cordova.exec(successCallback, errorCallback, "VoiceItCordova", "createEnrollment", [options.developerID, options.email, options.password]);
+};
+
+VoiceItCordova.prototype.deleteEnrollment = function(options, successCallback, errorCallback) {
+  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "deleteEnrollment", [options.developerID, options.email, options.password, options.enrollmentId]);
 };
 
 VoiceItCordova.prototype.authentication = function(options, successCallback, errorCallback) {

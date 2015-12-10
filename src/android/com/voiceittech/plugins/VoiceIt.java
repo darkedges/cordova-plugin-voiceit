@@ -1,10 +1,4 @@
 package com.voiceittech.plugins;
-/*
-PLEASE IMPORT YOUR OWN PACKAGE HERE LIKE THIS
-package com.YOURPACKAGE
-For Example:
-package com.voiceit_tech.voiceit_sdk_android;
-*/
 
 import android.os.AsyncTask;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +12,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 
 public class VoiceIt {
     public String developerId;

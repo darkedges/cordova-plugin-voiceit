@@ -1,21 +1,33 @@
-Cordova VoiceIt Plugin
-=============================
+# Cordova VoiceIt Plugin
 
-Introduction:
---------------
+An Apache Cordova plugin that lets you easily integrate VoiceIt's Voice Authentication API into your Cordova Based iOS and Android apps.
 
-This plugin lets you easily integrate the VoiceIt API for Voice Authentication into your Cordova Based Apps.
-In addition to providing access to the API Calls documented [here](https://siv.voiceprintportal.com/getstarted.jsp) this plugin also has recording and playback functionality built into it.
+For more information on VoiceIt and its features, see [the website](http://voiceit.tech) and [getting started docs](https://siv.voiceprintportal.com/getstarted.jsp)
 
-Supported Platforms:
---------------------
+* [Supported Platforms](#supported-platforms)
+* [Getting Started](#getting-started)
+* [Installation](#installation)
+* [API Calls](#api-calls)
+  * [The Parameters](#the-parameters)
+  * [Swift](#swift)
+  * [Objective-C](#objective-c)
 
-- iOS (Coming Soon)
-- Android
+## Supported Platforms
 
-Install:
----------
+* Android
+* iOS
+
+## Getting Started
+
+To use the VoiceIt in your iOS app, if you haven't already, please Sign Up for a free **Developer Id** at [http://voiceit.tech](https://siv.voiceprintportal.com/getDeveloperID.jsp). Then either fork this repository and try the [DemoStarterProjectSwift](https://github.com/voiceittech/voiceit-sdk-iOS/tree/master/DemoStarterProjectSwift) or [DemoStarterProjectObjectiveC](https://github.com/voiceittech/voiceit-sdk-iOS/tree/master/DemoStarterProjectObjectiveC) , then when ready you can download the [VoiceIt iOS SDK Zip](https://github.com/voiceittech/voiceit-sdk-iOS/blob/master/VoiceIt-iOS-SDK.zip?raw=true) and follow the installation instructions below.
+
+## Installation
 
 ```bash
 $ cordova plugin add cordova-plugin-voiceit
+```
+
+## API Calls
+```javascript
+var test = "adasds";
 ```

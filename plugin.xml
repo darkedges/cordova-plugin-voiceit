@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-plugin-voiceit"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        version="1.0.8">
+        version="1.2.0">
 
   <name>VoiceItCordova</name>
 
@@ -19,6 +19,21 @@
   <js-module src="www/VoiceItCordova.js" name="VoiceItCordova">
     <clobbers target="window.plugins.VoiceItCordova" />
   </js-module>
+
+  <!-- ios -->
+   <platform name="ios">
+     <config-file target="config.xml" parent="/*">
+       <feature name="VoiceItCordova">
+         <param name="ios-package" value="VoiceItCordova"/>
+       </feature>
+     </config-file>
+     <header-file src="src/ios/VoiceIt.h"/>
+     <source-file src="src/ios/VoiceIt.m"/>
+     <header-file src="src/ios/VoiceItCordova.h"/>
+     <source-file src="src/ios/VoiceItCordova.m"/>
+     <header-file src="src/ios/Encryption.h"/>
+     <source-file src="src/ios/Encryption.m"/>
+   </platform>
 
   <!-- android -->
   <platform name="android">
