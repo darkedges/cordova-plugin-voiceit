@@ -8,9 +8,13 @@ For more information on VoiceIt and its features, see [the website](http://voice
 * [Getting Started](#getting-started)
 * [Installation](#installation)
 * [API Calls](#api-calls)
-  * [The Parameters](#the-parameters)
-  * [Swift](#swift)
-  * [Objective-C](#objective-c)
+  * [Create User](#create-user)
+  * [Get User](#get-user)
+  * [Delete User](#delete-user)
+  * [Create Enrollment](#create-enrollment)
+  * [Get Enrollments](#get-enrollments)
+  * [Delete Enrollment](#delete-enrollment)
+  * [Authentication](#authentication)
 
 ## Supported Platforms
 
@@ -19,15 +23,42 @@ For more information on VoiceIt and its features, see [the website](http://voice
 
 ## Getting Started
 
-To use the VoiceIt in your iOS app, if you haven't already, please Sign Up for a free **Developer Id** at [http://voiceit.tech](https://siv.voiceprintportal.com/getDeveloperID.jsp). Then either fork this repository and try the [DemoStarterProjectSwift](https://github.com/voiceittech/voiceit-sdk-iOS/tree/master/DemoStarterProjectSwift) or [DemoStarterProjectObjectiveC](https://github.com/voiceittech/voiceit-sdk-iOS/tree/master/DemoStarterProjectObjectiveC) , then when ready you can download the [VoiceIt iOS SDK Zip](https://github.com/voiceittech/voiceit-sdk-iOS/blob/master/VoiceIt-iOS-SDK.zip?raw=true) and follow the installation instructions below.
+To use the VoiceIt Cordova Plugin in your Cordova Project, if you haven't already, please Sign Up for a free **Developer Id** at [http://voiceit.tech](https://siv.voiceprintportal.com/getDeveloperID.jsp). Then follow the installation instructions below.
 
 ## Installation
+
+First please cd into your Cordova App's root directory via the terminal/command line and then run the following command:
 
 ```bash
 $ cordova plugin add cordova-plugin-voiceit
 ```
 
 ## API Calls
+### Create User
+
 ```javascript
-var test = "adasds";
+VoiceIt.createUser({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password",
+  firstName: "John",
+  lastName: "Doe"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
+### Get User
+
+```javascript
+VoiceIt.getUser({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
 ```
