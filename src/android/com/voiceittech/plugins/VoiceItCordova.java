@@ -37,7 +37,7 @@ public class VoiceItCordova extends CordovaPlugin {
   private CountDownTimer countDowntimer;
 
   @Override
-  public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+  public boolean execute(String action,final JSONArray args, final CallbackContext callbackContext) throws JSONException {
     Context context = cordova.getActivity().getApplicationContext();
     Integer seconds;
     /*if (args.length() >= 1) {
@@ -102,7 +102,7 @@ public class VoiceItCordova extends CordovaPlugin {
       countDowntimer = new CountDownTimer(seconds * 1000, 1000) {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
-          stopRecordEnrollment(callbackContext, args);
+          stopRecordEnrollment(callbackContext, args.getString(0), args.getString(1), args.getString(2));
         }
       };
       countDowntimer.start();
@@ -136,7 +136,7 @@ public class VoiceItCordova extends CordovaPlugin {
       countDowntimer = new CountDownTimer(seconds * 1000, 1000) {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
-          stopRecordAuthentication(callbackContext, args);
+          stopRecordAuthentication(callbackContext, args.getString(0), args.getString(1), args.getString(2),args.getString(3), args.getString(4), args.getString(5), args.getString(6));
         }
       };
       countDowntimer.start();
@@ -177,14 +177,14 @@ public class VoiceItCordova extends CordovaPlugin {
     return false;
   }
 
-  private void stopRecordEnrollment(final CallbackContext callbackContext, JSONArray args) throws JSONException{
+  private void stopRecordEnrollment(final CallbackContext callbackContext,final String developerID, final String email,final String password){
     myRecorder.stop();
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
       public void run() {
         try{
-        VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
-        myVoiceIt.createEnrollment(args.getString(1),args.getString(2), outputFile);
+        VoiceIt myVoiceIt = new VoiceIt(developerID);
+        myVoiceIt.createEnrollment(email,password, outputFile);
         } catch(Exception ex){
         System.out.println("Exception Error:"+ex.getMessage());
        }
@@ -193,14 +193,14 @@ public class VoiceItCordova extends CordovaPlugin {
     });
   }
 
-  private void stopRecordAuthentication(final CallbackContext callbackContext, JSONArray args) throws JSONException{
+  private void stopRecordAuthentication(final CallbackContext callbackContext, final String developerID, final String email,final String password,final String accuracy, final String accuracyPasses, final String accuracyPassIncrement, final String confidence){
     myRecorder.stop();
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
       public void run() {
         try{
-          VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
-          myVoiceIt.authentication(args.getString(1),args.getString(2), outputFile, args.getString(3), args.getString(4), args.getString(5), args.getString(6));
+          VoiceIt myVoiceIt = new VoiceIt(developerID);
+          myVoiceIt.authentication(email,password, outputFile, accuracy, accuracyPasses, accuracyPassIncrement, confidence);
         } catch(Exception ex){
           System.out.println("Exception Error:"+ex.getMessage());
         }
