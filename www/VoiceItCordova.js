@@ -24,15 +24,8 @@ VoiceItCordova.prototype.authentication = function(options, successCallback, err
   cordova.exec(successCallback, errorCallback, "VoiceItCordova", "authentication", [options.developerID, options.email, options.password, options.accuracy, options.accuracyPasses, options.accuracyPassIncrement, options.confidence]);
 };
 
-/*
-VoiceItCordova.install = function() {
-  if (!window.plugins) {
-    window.plugins = {};
-  }
-  window.plugins.VoiceItCordova = new VoiceItCordova();
-  return window.plugins.VoiceItCordova;
+VoiceItCordova.prototype.playback = function(successCallback, errorCallback) {
+  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "playback", []);
 };
 
-cordova.addConstructor(VoiceItCordova.install);
-*/
 window.VoiceIt = new VoiceItCordova();
