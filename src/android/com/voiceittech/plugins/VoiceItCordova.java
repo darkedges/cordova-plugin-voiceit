@@ -177,25 +177,33 @@ public class VoiceItCordova extends CordovaPlugin {
     return false;
   }
 
-  private void stopRecordEnrollment(final CallbackContext callbackContext, JSONArray args) {
+  private void stopRecordEnrollment(final CallbackContext callbackContext, JSONArray args) throws JSONException{
     myRecorder.stop();
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
       public void run() {
+        try{
         VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
         myVoiceIt.createEnrollment(args.getString(1),args.getString(2), outputFile);
+        } catch(Exception ex){
+        System.out.println("Exception Error:"+ex.getMessage());
+       }
         callbackContext.success(outputFile);
         }
     });
   }
 
-  private void stopRecordAuthentication(final CallbackContext callbackContext, JSONArray args) {
+  private void stopRecordAuthentication(final CallbackContext callbackContext, JSONArray args) throws JSONException{
     myRecorder.stop();
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
       public void run() {
-        VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
-        myVoiceIt.authentication(args.getString(1),args.getString(2), outputFile, args.getString(3), args.getString(4), args.getString(5), args.getString(6));
+        try{
+          VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
+          myVoiceIt.authentication(args.getString(1),args.getString(2), outputFile, args.getString(3), args.getString(4), args.getString(5), args.getString(6));
+        } catch(Exception ex){
+          System.out.println("Exception Error:"+ex.getMessage());
+        }
         callbackContext.success(outputFile);
         }
     });
