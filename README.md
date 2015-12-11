@@ -9,6 +9,7 @@ For more information on VoiceIt and its features, see [the website](http://voice
 * [Installation](#installation)
 * [API Calls](#api-calls)
   * [Create User](#create-user)
+  * [Set User](#set-user)
   * [Get User](#get-user)
   * [Delete User](#delete-user)
   * [Create Enrollment](#create-enrollment)
@@ -35,7 +36,12 @@ $ cordova plugin add cordova-plugin-voiceit
 ```
 
 ## API Calls
+
+Here are code snippets that show you how you can call the Various VoiceIt API Calls inside of your Cordova Project JavaScript Files.
+
 ### Create User
+
+To create a new user call the createUser function like this with the following parameters: developerID, email, password, first name, last name
 
 ```javascript
 VoiceIt.createUser({
@@ -50,7 +56,26 @@ VoiceIt.createUser({
   alert('Error: ' + error);
 });
 ```
+### Set User
+
+To update an existing user call the setUser function like this with the following parameters: developerID, email, password, first name, last name
+
+```javascript
+VoiceIt.setUser({
+  developerID: "DEVELOPER_ID_HERE",
+  email: "cordova@voiceit-tech.com",
+  password: "password",
+  firstName: "John",
+  lastName: "Doe"
+}, function(response) {
+  alert('Result: ' + response);
+}, function(error) {
+  alert('Error: ' + error);
+});
+```
 ### Get User
+
+To retrieve an existing user call the getUser function like this with the following parameters: developerID, email, password
 
 ```javascript
 VoiceIt.getUser({
@@ -65,6 +90,8 @@ VoiceIt.getUser({
 ```
 ### Delete User
 
+To delete an existing user call the deleteUser function like this with the following parameters: developerID, email, password
+
 ```javascript
 VoiceIt.deleteUser({
   developerID: "DEVELOPER_ID_HERE",
@@ -77,6 +104,10 @@ VoiceIt.deleteUser({
 });
 ```
 ### Create Enrollment
+
+To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerID, email, password.
+
+Please Note: Unlike other wrappers, this createEnrollment function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Create Enrollment API call to send that audio file as an enrollment.
 
 ```javascript
 VoiceIt.createEnrollment({
@@ -92,6 +123,8 @@ VoiceIt.createEnrollment({
 
 ### Get Enrollments
 
+To get a list of the existing enrollments simply call the getEnrollments method for the specific user like this with the following parameters: developerID, email, password
+
 ```javascript
 VoiceIt.getEnrollments({
   developerID: "DEVELOPER_ID_HERE",
@@ -104,6 +137,8 @@ VoiceIt.getEnrollments({
 });
 ```
 ### Delete Enrollment
+
+To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: developerID, email, password, enrollmentId
 
 ```javascript
 VoiceIt.getEnrollments({
@@ -119,6 +154,10 @@ VoiceIt.getEnrollments({
 ```
 
 ### Authentication
+
+To authenticate the user profile use the authentication method like this with the following parameters: email, password, accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100).
+
+Please Note: Unlike other wrappers, this authentication function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Authentication API call to send that audio file in for authentication.
 
 ```javascript
 VoiceIt.authentication({
@@ -136,6 +175,8 @@ VoiceIt.authentication({
 });
 ```
 ### Playback
+
+This is a special method for this plugin that simply plays back the most recent recording if called right after either the createEnrollment or authentication method.
 
 ```javascript
 VoiceIt.playback( function(response) {

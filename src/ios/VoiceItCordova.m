@@ -216,6 +216,11 @@
 
 - (void)playback:(CDVInvokedUrlCommand*)command {
   _command = command;
+  if([recorderFilePath length] < 1){
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Nothing to Play"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:_command.callbackId];
+  }
+
   [self.commandDelegate runInBackground:^{
     NSLog(@"recording playback");
     NSURL *url = [NSURL fileURLWithPath:recorderFilePath];
@@ -234,7 +239,7 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
   NSLog(@"audioPlayerDidFinishPlaying");
-  pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"playbackComplete"];
+  pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Completed Playing Recording"];
   [self.commandDelegate sendPluginResult:pluginResult callbackId:_command.callbackId];
 }
 

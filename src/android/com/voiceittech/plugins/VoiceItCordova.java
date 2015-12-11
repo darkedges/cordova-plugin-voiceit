@@ -166,6 +166,9 @@ public class VoiceItCordova extends CordovaPlugin {
     }
 
     if (action.equals("playback")) {
+      if(outputFile == null || outputFile.equals("")){
+        callbackContext.error("There is nothing to play");
+      }
       MediaPlayer mp = new MediaPlayer();
       mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
       try {
@@ -189,7 +192,7 @@ public class VoiceItCordova extends CordovaPlugin {
       }
       mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
         public void onCompletion(MediaPlayer mp) {
-          callbackContext.success("playbackComplete");
+          callbackContext.success("Completed Playing Recording");
         }
       });
       mp.start();
