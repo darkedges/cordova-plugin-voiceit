@@ -216,9 +216,10 @@
 
 - (void)playback:(CDVInvokedUrlCommand*)command {
   _command = command;
-  if([recorderFilePath length] < 1){
+  if(recorderFilePath == nil || [recorderFilePath isEqualToString:@""]){
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Nothing to Play"];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:_command.callbackId];
+    return;
   }
 
   [self.commandDelegate runInBackground:^{
