@@ -176,7 +176,7 @@ VoiceIt.authentication({
 ```
 ### Playback
 
-This is a special method for this plugin that simply plays back the most recent recording if called right after either the createEnrollment or authentication method.
+This is a special method for this plugin that simply plays back the most recent recording if called right after either the [createEnrollment](#create-enrollment) or [authentication](#authentication) method.
 
 ```javascript
 VoiceIt.playback( function(response) {
