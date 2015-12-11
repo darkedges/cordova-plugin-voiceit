@@ -2,12 +2,12 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-plugin-voiceit"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        version="1.2.1">
+        version="1.2.3">
 
   <name>VoiceItCordova</name>
 
   <description>
-    This plugin is a Cordova audio recorder plugin which works as API.
+    This plugin is a Cordova VoiceIt plugin for that encapsulates VoiceIt's Voice Authentication(Voice Biometrics) API
   </description>
 
   <license>MIT</license>

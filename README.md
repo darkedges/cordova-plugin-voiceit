@@ -141,7 +141,7 @@ VoiceIt.getEnrollments({
 To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: developerID, email, password, enrollmentId
 
 ```javascript
-VoiceIt.getEnrollments({
+VoiceIt.deleteEnrollment({
   developerID: "DEVELOPER_ID_HERE",
   email: "cordova@voiceit-tech.com",
   password: "password",
