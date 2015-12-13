@@ -109,6 +109,8 @@ To create a new enrollment template for the specified user profile use the creat
 
 Please Note: Unlike other wrappers, this createEnrollment function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Create Enrollment API call to send that audio file as an enrollment.
 
+The recorder starts recording as soon as the createEnrollment function is called, it is also recommended that you either provide a visual or auditory indication to the user before the recording is about to start for example "playing a beep".
+
 ```javascript
 VoiceIt.createEnrollment({
   developerID: "DEVELOPER_ID_HERE",
@@ -158,6 +160,8 @@ VoiceIt.deleteEnrollment({
 To authenticate the user profile use the authentication method like this with the following parameters: email, password, accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100).
 
 Please Note: Unlike other wrappers, this authentication function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Authentication API call to send that audio file in for authentication.
+
+The recorder starts recording as soon as the authentication function is called, it is also recommended that you either provide a visual or auditory indication to the user before the recording is about to start for example "playing a beep".
 
 ```javascript
 VoiceIt.authentication({

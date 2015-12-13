@@ -92,6 +92,8 @@ public class VoiceItCordova extends CordovaPlugin {
     if (action.equals("createEnrollment")) {
       outputFile = context.getFilesDir().getAbsoluteFile() + "/"
       + "voiceitrecording.m4a";
+      File f = new File(outputFile);
+      f.delete();
       myRecorder = new MediaRecorder();
       myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       myRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
@@ -130,6 +132,8 @@ public class VoiceItCordova extends CordovaPlugin {
     if (action.equals("authentication")) {
       outputFile = context.getFilesDir().getAbsoluteFile() + "/"
         + "voiceitrecording.m4a";
+      File f = new File(outputFile);
+      f.delete();
       myRecorder = new MediaRecorder();
       myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       myRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
