@@ -41,7 +41,7 @@ Here are code snippets that show you how you can call the Various VoiceIt API Ca
 
 ### Create User
 
-To create a new user call the createUser function like this with the following parameters: developerID, email, password, first name, last name
+To create a new user call the createUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), first name, last name
 
 ```javascript
 VoiceIt.createUser({
@@ -58,7 +58,7 @@ VoiceIt.createUser({
 ```
 ### Set User
 
-To update an existing user call the setUser function like this with the following parameters: developerID, email, password, first name, last name
+To update an existing user call the setUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), first name, last name
 
 ```javascript
 VoiceIt.setUser({
@@ -75,7 +75,7 @@ VoiceIt.setUser({
 ```
 ### Get User
 
-To retrieve an existing user call the getUser function like this with the following parameters: developerID, email, password
+To retrieve an existing user call the getUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
 
 ```javascript
 VoiceIt.getUser({
@@ -90,7 +90,7 @@ VoiceIt.getUser({
 ```
 ### Delete User
 
-To delete an existing user call the deleteUser function like this with the following parameters: developerID, email, password
+To delete an existing user call the deleteUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
 
 ```javascript
 VoiceIt.deleteUser({
@@ -105,7 +105,7 @@ VoiceIt.deleteUser({
 ```
 ### Create Enrollment
 
-To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerID, email, password.
+To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you).
 
 Please Note: Unlike other wrappers, this createEnrollment function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Create Enrollment API call to send that audio file as an enrollment.
 
@@ -125,7 +125,7 @@ VoiceIt.createEnrollment({
 
 ### Get Enrollments
 
-To get a list of the existing enrollments simply call the getEnrollments method for the specific user like this with the following parameters: developerID, email, password
+To get a list of the existing enrollments simply call the getEnrollments method for the specific user like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
 
 ```javascript
 VoiceIt.getEnrollments({
@@ -140,7 +140,7 @@ VoiceIt.getEnrollments({
 ```
 ### Delete Enrollment
 
-To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: developerID, email, password, enrollmentId
+To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), enrollmentId
 
 ```javascript
 VoiceIt.deleteEnrollment({
@@ -157,7 +157,7 @@ VoiceIt.deleteEnrollment({
 
 ### Authentication
 
-To authenticate the user profile use the authentication method like this with the following parameters: email, password, accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100).
+To authenticate the user profile use the authentication method like this with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100).
 
 Please Note: Unlike other wrappers, this authentication function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Authentication API call to send that audio file in for authentication.
 
