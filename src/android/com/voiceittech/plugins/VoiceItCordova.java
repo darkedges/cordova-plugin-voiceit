@@ -93,9 +93,9 @@ public class VoiceItCordova extends CordovaPlugin {
       myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       myRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
       myRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-      myRecorder.setAudioSamplingRate(44500);
+      myRecorder.setAudioSamplingRate(11250);
       myRecorder.setAudioChannels(1);
-      myRecorder.setAudioEncodingBitRate(16000);
+      myRecorder.setAudioEncodingBitRate(8000);
       myRecorder.setOutputFile(outputFile);
 
       try {
@@ -110,7 +110,7 @@ public class VoiceItCordova extends CordovaPlugin {
         return false;
       }
 
-      countDowntimer = new CountDownTimer(4500, 1000) {
+      countDowntimer = new CountDownTimer(4800, 1000) {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
           try{
@@ -133,9 +133,9 @@ public class VoiceItCordova extends CordovaPlugin {
       myRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
       myRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
       myRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-      myRecorder.setAudioSamplingRate(44500);
+      myRecorder.setAudioSamplingRate(11250);
       myRecorder.setAudioChannels(1);
-      myRecorder.setAudioEncodingBitRate(16000);
+      myRecorder.setAudioEncodingBitRate(8000);
       myRecorder.setOutputFile(outputFile);
 
       try {
@@ -150,7 +150,7 @@ public class VoiceItCordova extends CordovaPlugin {
         return false;
       }
 
-      countDowntimer = new CountDownTimer(4500, 1000) {
+      countDowntimer = new CountDownTimer(4800, 1000) {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
           try{
