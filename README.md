@@ -157,7 +157,15 @@ VoiceIt.deleteEnrollment({
 
 ### Authentication
 
-To authenticate the user profile use the authentication method like this with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100).
+This REST API call is used to authenticate the specified user profile within the Voiceprint Developer Portal (VPDP) service.
+
+It authenticates the specified user profile in the VPDP service database and returns success or failure.
+
+Please Note: The Voiceprint Phrase's (VPP's) are Text-Dependent. The Minimum length of a VPP is 1.5 second. Please note: You cannot use the same sound file for an enrollment and then an authentication. This is because of our anti- spoofing technology.
+
+To manage the VPPs associated with your DeveloperID, please login to the developer portal and navigate to Voiceprint Phrases section.
+
+To authenticate the user profile use this method with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100).  We recommend calling with 0 for accuracy, 5 for accuracy passes, 2 for accuracy pass increment, and 85-90 for confidence. This allows multiple attempts at secure authentication without having to re-record and send the voiceprint phrase.  You can also use DetectedVoiceprintText and DetectedTextConfidence to help decide which authentication to keep or throw out and have the user record again based on speech text detected and its confidence.
 
 Please Note: Unlike other wrappers, this authentication function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Authentication API call to send that audio file in for authentication.
 
@@ -168,9 +176,9 @@ VoiceIt.authentication({
   developerID: "DEVELOPER_ID_HERE",
   email: "cordova@voiceit-tech.com",
   password: "password",
-  accuracy: "0",
-  accuracyPasses: "5",
-  accuracyPassIncrement: "2",
+  accuracy: "5",
+  accuracyPasses: "10",
+  accuracyPassIncrement: "5",
   confidence: "85"
 }, function(response) {
   alert('Result: ' + response);
