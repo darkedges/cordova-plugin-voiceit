@@ -21,7 +21,10 @@ VoiceItCordova.prototype.getEnrollments = function(options, successCallback, err
 };
 
 VoiceItCordova.prototype.createEnrollment = function(options, successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "createEnrollment", [options.developerID, options.email, options.password]);
+  if (options.contentLanguage == null){
+		options.contentLanguage = "";
+	}
+  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "createEnrollment", [options.developerID, options.email, options.password, options.contentLanguage]);
 };
 
 VoiceItCordova.prototype.deleteEnrollment = function(options, successCallback, errorCallback) {
@@ -29,7 +32,10 @@ VoiceItCordova.prototype.deleteEnrollment = function(options, successCallback, e
 };
 
 VoiceItCordova.prototype.authentication = function(options, successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "authentication", [options.developerID, options.email, options.password, options.accuracy, options.accuracyPasses, options.accuracyPassIncrement, options.confidence]);
+  if (options.contentLanguage == null){
+    options.contentLanguage = "";
+  }
+  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "authentication", [options.developerID, options.email, options.password, options.accuracy, options.accuracyPasses, options.accuracyPassIncrement, options.confidence, options.contentLanguage]);
 };
 
 VoiceItCordova.prototype.playback = function(successCallback, errorCallback) {

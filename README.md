@@ -105,7 +105,7 @@ VoiceIt.deleteUser({
 ```
 ### Create Enrollment
 
-To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you).
+To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and optionally a content language.
 
 Please Note: Unlike other wrappers, this createEnrollment function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Create Enrollment API call to send that audio file as an enrollment.
 
@@ -115,7 +115,8 @@ The recorder starts recording as soon as the createEnrollment function is called
 VoiceIt.createEnrollment({
   developerID: "DEVELOPER_ID_HERE",
   email: "cordova@voiceit-tech.com",
-  password: "password"
+  password: "password",
+  contentLanguage: "en-US"
 }, function(response) {
   alert('Result: ' + response);
 }, function(error) {
@@ -157,7 +158,7 @@ VoiceIt.deleteEnrollment({
 
 ### Authentication
 
-To authenticate the user profile use the authentication method like this with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100).
+To authenticate the user profile use the authentication method like this with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100), and optionally content language.
 
 Please Note: Unlike other wrappers, this authentication function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Authentication API call to send that audio file in for authentication.
 
@@ -171,7 +172,8 @@ VoiceIt.authentication({
   accuracy: "0",
   accuracyPasses: "5",
   accuracyPassIncrement: "2",
-  confidence: "85"
+  confidence: "85",
+  contentLanguage: "en-US"
 }, function(response) {
   alert('Result: ' + response);
 }, function(error) {

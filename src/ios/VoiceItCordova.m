@@ -258,7 +258,7 @@
            createEnrollment:[_command.arguments objectAtIndex:1]
                      passwd:[_command.arguments objectAtIndex:2]
         pathToEnrollmentWav:recorderFilePath
-        contentLanguage:@""
+        contentLanguage:[_command.arguments objectAtIndex:3]
                    callback:^(NSString *result) {
                      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:result];
                      [self.commandDelegate sendPluginResult:pluginResult callbackId:_command.callbackId];
@@ -273,7 +273,7 @@
              accuracyPasses:[_command.arguments objectAtIndex:4]
       accuracyPassIncrement:[_command.arguments objectAtIndex:5]
                  confidence:[_command.arguments objectAtIndex:6]
-            contentLanguage:@""
+            contentLanguage:[_command.arguments objectAtIndex:7]
 
 
                    callback:^(NSString *result) {

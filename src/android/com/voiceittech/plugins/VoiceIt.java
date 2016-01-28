@@ -266,7 +266,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String createEnrollment(final String email,final String password,final String pathToEnrollmentWav){
+    public String createEnrollment(final String email,final String password,final String pathToEnrollmentWav, String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -279,6 +279,7 @@ public class VoiceIt {
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
+                    urlConnection.addRequestProperty("ContentLanguage", contentLanguage);
                     urlConnection.setRequestProperty("Content-Type", "audio/wav");
                     File file =  new File(pathToEnrollmentWav);
                     byte[] myData = new byte[(int) file.length()];
@@ -339,7 +340,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String createEnrollmentByWavURL(final String email,final String password,final String urlToEnrollmentWav){
+    public String createEnrollmentByWavURL(final String email,final String password,final String urlToEnrollmentWav, String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -353,7 +354,9 @@ public class VoiceIt {
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     urlConnection.setRequestProperty("Content-Type", "audio/wav");
+                    urlConnection.setRequestProperty("ContentLanguage", contentLanguage);
                     urlConnection.setRequestProperty("VsitwavURL", urlToEnrollmentWav);
+
                     String response = "";
                     try {
                         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -562,7 +565,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String authentication(final String email,final String password,final String pathToAuthenticationWav,final String accuracy, final String accuracyPasses, final String accuracyPassIncrement, final String confidence){
+    public String authentication(final String email,final String password,final String pathToAuthenticationWav,final String accuracy, final String accuracyPasses, final String accuracyPassIncrement, final String confidence, final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -579,6 +582,7 @@ public class VoiceIt {
                     urlConnection.addRequestProperty("VsitAccuracyPasses", accuracyPasses);
                     urlConnection.addRequestProperty("VsitAccuracyPassIncrement", accuracyPassIncrement);
                     urlConnection.addRequestProperty("VsitConfidence", confidence);
+                    urlConnection.addRequestProperty("ContentLanguage", contentLanguage);
                     urlConnection.setRequestProperty("Content-Type", "audio/wav");
                     File file =  new File(pathToAuthenticationWav);
 
@@ -640,7 +644,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String authenticationByWavURL(final String email,final String password,final String urlToAuthenticationWav,final String accuracy, final String accuracyPasses, final String accuracyPassIncrement, final String confidence){
+    public String authenticationByWavURL(final String email,final String password,final String urlToAuthenticationWav,final String accuracy, final String accuracyPasses, final String accuracyPassIncrement, final String confidence, final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -657,6 +661,7 @@ public class VoiceIt {
                     urlConnection.addRequestProperty("VsitAccuracyPasses", accuracyPasses);
                     urlConnection.addRequestProperty("VsitAccuracyPassIncrement", accuracyPassIncrement);
                     urlConnection.addRequestProperty("VsitConfidence", confidence);
+                    urlConnection.setRequestProperty("ContentLanguage", contentLanguage);
                     urlConnection.setRequestProperty("Content-Type", "audio/wav");
                     urlConnection.setRequestProperty("VsitwavURL", urlToAuthenticationWav);
                     String response = "";
