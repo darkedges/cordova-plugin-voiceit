@@ -16,9 +16,11 @@ import java.security.NoSuchAlgorithmException;
 public class VoiceIt {
     public String developerId;
     public String host;
+    public String platformId;
     public String theResponse;
     public VoiceIt(String developerId) {
         this.developerId = developerId;
+        this.platformId = "10";
         this.host = "https://siv.voiceprintportal.com/sivservice/api/";
     }
 
@@ -52,6 +54,7 @@ public class VoiceIt {
                     URL url = new URL(host+"users");
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -107,6 +110,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitFirstName", firstName);
@@ -164,6 +168,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("PUT");
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitFirstName", firstName);
@@ -221,6 +226,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("DELETE");
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -276,6 +282,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -349,6 +356,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -406,6 +414,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setRequestMethod("GET");
                     urlConnection.setDoInput(true);
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -461,6 +470,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setRequestMethod("GET");
                     urlConnection.setDoInput(true);
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -517,6 +527,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setRequestMethod("DELETE");
                     urlConnection.setDoInput(true);
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -572,6 +583,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
@@ -650,6 +662,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
+                    urlConnection.addRequestProperty("PlatformID", platformId);
                     urlConnection.addRequestProperty("VsitEmail", email);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
