@@ -272,7 +272,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String createEnrollment(final String email,final String password,final String pathToEnrollmentWav, String contentLanguage){
+    public String createEnrollment(final String email,final String password,final String pathToEnrollmentWav, final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -347,7 +347,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String createEnrollmentByWavURL(final String email,final String password,final String urlToEnrollmentWav, String contentLanguage){
+    public String createEnrollmentByWavURL(final String email,final String password,final String urlToEnrollmentWav,final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
