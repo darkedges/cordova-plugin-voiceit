@@ -269,11 +269,8 @@
              authentication:[_command.arguments objectAtIndex:1]
                      passwd:[_command.arguments objectAtIndex:2]
     pathToAuthenticationWav:recorderFilePath
-                   accuracy:[_command.arguments objectAtIndex:3]
-             accuracyPasses:[_command.arguments objectAtIndex:4]
-      accuracyPassIncrement:[_command.arguments objectAtIndex:5]
-                 confidence:[_command.arguments objectAtIndex:6]
-            contentLanguage:[_command.arguments objectAtIndex:7]
+                 confidence:[_command.arguments objectAtIndex:3]
+            contentLanguage:[_command.arguments objectAtIndex:4]
 
 
                    callback:^(NSString *result) {

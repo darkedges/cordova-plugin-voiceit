@@ -64,9 +64,6 @@
 - (void)authentication:(NSString *)email
                      passwd:(NSString *)passwd
     pathToAuthenticationWav:(NSString *)pathToAuthenticationWav
-                   accuracy:(NSString *)accuracy
-             accuracyPasses:(NSString *)accuracyPasses
-      accuracyPassIncrement:(NSString *)accuracyPassIncrement
                  confidence:(NSString *)confidence
             contentLanguage:(NSString *)contentLanguage
                    callback:(void (^)(NSString *))callback;
@@ -74,9 +71,6 @@
 - (void)authenticationByWavURL:(NSString *)email
                         passwd:(NSString *)passwd
         urlToAuthenticationWav:(NSString *)urlToAuthenticationWav
-                      accuracy:(NSString *)accuracy
-                accuracyPasses:(NSString *)accuracyPasses
-         accuracyPassIncrement:(NSString *)accuracyPassIncrement
                     confidence:(NSString *)confidence
                contentLanguage:(NSString *)contentLanguage
                       callback:(void (^)(NSString *))callback;

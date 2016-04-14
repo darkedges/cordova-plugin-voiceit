@@ -35,7 +35,7 @@ VoiceItCordova.prototype.authentication = function(options, successCallback, err
   if (options.contentLanguage == null){
     options.contentLanguage = "";
   }
-  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "authentication", [options.developerID, options.email, options.password, options.accuracy, options.accuracyPasses, options.accuracyPassIncrement, options.confidence, options.contentLanguage]);
+  cordova.exec(successCallback, errorCallback, "VoiceItCordova", "authentication", [options.developerID, options.email, options.password, options.confidence, options.contentLanguage]);
 };
 
 VoiceItCordova.prototype.playback = function(successCallback, errorCallback) {

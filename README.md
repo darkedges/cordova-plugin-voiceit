@@ -166,7 +166,7 @@ Please Note: The Voiceprint Phrase's (VPP's) are Text-Dependent. The Minimum len
 
 To manage the VPPs associated with your DeveloperID, please login to the developer portal and navigate to Voiceprint Phrases section.
 
-To authenticate the user profile use the authentication method like this with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), accuracy of authentication (between 0-5, 0 being the most strict and 5 the most lax), number of accuracy passes (between 1-10), accuracy pass increment (between 1-5) and confidence level (between 85-100), and optionally content language.
+To authenticate the user profile use the authentication method like this with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), confidence level (between 85-100), and optionally content language.
 
 We recommend calling with 5 for accuracy, 10 for accuracy passes, 5 for accuracy pass increment, and 85 for confidence. This allows multiple attempts at secure authentication without having to re-record and send the voiceprint phrase.  You can also use DetectedVoiceprintText and DetectedTextConfidence to help decide which authentication to keep or throw out and have the user record again based on speech text detected and its confidence.
 
@@ -179,9 +179,6 @@ VoiceIt.authentication({
   developerID: "DEVELOPER_ID_HERE",
   email: "cordova@voiceit-tech.com",
   password: "password",
-  accuracy: "5",
-  accuracyPasses: "10",
-  accuracyPassIncrement: "5",
   confidence: "85",
   contentLanguage: "en-US"
 }, function(response) {

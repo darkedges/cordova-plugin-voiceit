@@ -334,9 +334,6 @@
 - (void)authentication:(NSString *)email
                      passwd:(NSString *)passwd
     pathToAuthenticationWav:(NSString *)pathToAuthenticationWav
-                   accuracy:(NSString *)accuracy
-             accuracyPasses:(NSString *)accuracyPasses
-      accuracyPassIncrement:(NSString *)accuracyPassIncrement
                  confidence:(NSString *)confidence
             contentLanguage:(NSString *)contentLanguage
                    callback:(void (^)(NSString *))callback
@@ -351,10 +348,6 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
     [request addValue:email forHTTPHeaderField:@"VsitEmail"];
-    [request addValue:accuracy forHTTPHeaderField:@"VsitAccuracy"];
-    [request addValue:accuracyPasses forHTTPHeaderField:@"VsitAccuracyPasses"];
-    [request addValue:accuracyPassIncrement
-        forHTTPHeaderField:@"VsitAccuracyPassIncrement"];
     [request addValue:confidence forHTTPHeaderField:@"VsitConfidence"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
     [request addValue:contentLanguage forHTTPHeaderField:@"ContentLanguage"];
@@ -378,9 +371,6 @@
 - (void)authenticationByWavURL:(NSString *)email
                         passwd:(NSString *)passwd
         urlToAuthenticationWav:(NSString *)urlToAuthenticationWav
-                      accuracy:(NSString *)accuracy
-                accuracyPasses:(NSString *)accuracyPasses
-         accuracyPassIncrement:(NSString *)accuracyPassIncrement
                     confidence:(NSString *)confidence
                contentLanguage:(NSString *)contentLanguage
                       callback:(void (^)(NSString *))callback
@@ -394,10 +384,6 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
     [request addValue:email forHTTPHeaderField:@"VsitEmail"];
-    [request addValue:accuracy forHTTPHeaderField:@"VsitAccuracy"];
-    [request addValue:accuracyPasses forHTTPHeaderField:@"VsitAccuracyPasses"];
-    [request addValue:accuracyPassIncrement
-        forHTTPHeaderField:@"VsitAccuracyPassIncrement"];
     [request addValue:confidence forHTTPHeaderField:@"VsitConfidence"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
     [request addValue:urlToAuthenticationWav forHTTPHeaderField:@"VsitwavURL"];
