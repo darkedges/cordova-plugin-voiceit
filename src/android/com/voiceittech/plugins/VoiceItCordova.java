@@ -154,7 +154,7 @@ public class VoiceItCordova extends CordovaPlugin {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
           try{
-            stopRecordAuthentication(callbackContext, args.getString(0), args.getString(1), args.getString(2),args.getString(3), args.getString(4)));
+            stopRecordAuthentication(callbackContext, args.getString(0), args.getString(1), args.getString(2),args.getString(3), args.getString(4));
           } catch(Exception ex){
             System.out.println("Exception Error:"+ex.getMessage());
           }
