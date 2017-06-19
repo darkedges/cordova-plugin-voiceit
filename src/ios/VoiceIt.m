@@ -34,7 +34,7 @@
 }
 
 #pragma mark - User API Calls
-- (void)getUser:(NSString *)email
+- (void)getUser:(NSString *)userId
          passwd:(NSString *)passwd
        callback:(void (^)(NSString *))callback
 {
@@ -46,7 +46,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
 
     NSURLSessionDataTask *task =
@@ -64,10 +64,8 @@
     [task resume];
 }
 
-- (void)createUser:(NSString *)email
+- (void)createUser:(NSString *)userId
             passwd:(NSString *)passwd
-         firstName:(NSString *)firstName
-          lastName:(NSString *)lastName
           callback:(void (^)(NSString *))callback
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
@@ -78,10 +76,8 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
-    [request addValue:firstName forHTTPHeaderField:@"VsitFirstName"];
-    [request addValue:lastName forHTTPHeaderField:@"VsitLastName"];
     NSURLSessionDataTask *task =
         [session dataTaskWithRequest:request
                    completionHandler:^(NSData *data, NSURLResponse *response,
@@ -97,40 +93,7 @@
     [task resume];
 }
 
-- (void)setUser:(NSString *)email
-         passwd:(NSString *)passwd
-      firstName:(NSString *)firstName
-       lastName:(NSString *)lastName
-       callback:(void (^)(NSString *))callback
-{
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-        initWithURL:[[NSURL alloc] initWithString:[self addString:[self getHost] secondString:@"users"]]];
-    NSURLSession *session = [NSURLSession sharedSession];
-    [request setHTTPMethod:@"PUT"];
-    [request addValue:@"14" forHTTPHeaderField:@"PlatformID"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
-    [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
-    [request addValue:firstName forHTTPHeaderField:@"VsitFirstName"];
-    [request addValue:lastName forHTTPHeaderField:@"VsitLastName"];
-    NSURLSessionDataTask *task =
-        [session dataTaskWithRequest:request
-                   completionHandler:^(NSData *data, NSURLResponse *response,
-                                       NSError *error) {
-
-                     NSString *result =
-                         [[NSString alloc] initWithData:data
-                                               encoding:NSUTF8StringEncoding];
-                     NSLog(@"setUser Called and Returned: %@", result);
-                     // Add Call to Callback function passing in result
-                     callback(result);
-                   }];
-    [task resume];
-}
-
-- (void)deleteUser:(NSString *)email
+- (void)deleteUser:(NSString *)userId
             passwd:(NSString *)passwd
           callback:(void (^)(NSString *))callback
 {
@@ -142,7 +105,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
 
     NSURLSessionDataTask *task =
@@ -161,7 +124,7 @@
 
 #pragma mark - Enrollment API Calls
 
-- (void)getEnrollments:(NSString *)email
+- (void)getEnrollments:(NSString *)userId
                 passwd:(NSString *)passwd
               callback:(void (^)(NSString *))callback
 {
@@ -174,7 +137,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
 
     NSURLSessionDataTask *task =
@@ -191,7 +154,7 @@
     [task resume];
 }
 
-- (void)getEnrollmentsCount:(NSString *)email
+- (void)getEnrollmentsCount:(NSString *)userId
                      passwd:(NSString *)passwd
                     vppText:(NSString *)vppText
                    callback:(void (^)(NSString *))callback
@@ -205,7 +168,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
     [request addValue:vppText forHTTPHeaderField:@"VppText"];
 
@@ -224,7 +187,7 @@
     [task resume];
 }
 
-- (void)createEnrollment:(NSString *)email
+- (void)createEnrollment:(NSString *)userId
                   passwd:(NSString *)passwd
      pathToEnrollmentWav:(NSString *)pathToEnrollmentWav
          contentLanguage:(NSString *)contentLanguage
@@ -239,7 +202,7 @@
     [request addValue:@"audio/wav" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
     [request addValue:contentLanguage forHTTPHeaderField:@"ContentLanguage"];
     [request
@@ -259,7 +222,7 @@
     [task resume];
 }
 
-- (void)createEnrollmentByWavURL:(NSString *)email
+- (void)createEnrollmentByWavURL:(NSString *)userId
                           passwd:(NSString *)passwd
               urlToEnrollmentWav:(NSString *)urlToEnrollmentWav
                  contentLanguage:(NSString *)contentLanguage
@@ -274,7 +237,7 @@
     [request addValue:@"audio/wav" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
     [request addValue:urlToEnrollmentWav forHTTPHeaderField:@"VsitwavURL"];
     [request addValue:contentLanguage forHTTPHeaderField:@"ContentLanguage"];
@@ -295,7 +258,7 @@
     [task resume];
 }
 
-- (void)deleteEnrollment:(NSString *)email
+- (void)deleteEnrollment:(NSString *)userId
                   passwd:(NSString *)passwd
             enrollmentId:(NSString *)enrollmentId
                 callback:(void (^)(NSString *))callback
@@ -312,7 +275,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
 
     NSURLSessionDataTask *task =
@@ -331,10 +294,9 @@
 
 #pragma mark - Authentication API Calls
 
-- (void)authentication:(NSString *)email
+- (void)authentication:(NSString *)userId
                      passwd:(NSString *)passwd
     pathToAuthenticationWav:(NSString *)pathToAuthenticationWav
-                 confidence:(NSString *)confidence
             contentLanguage:(NSString *)contentLanguage
                    callback:(void (^)(NSString *))callback
 {
@@ -347,8 +309,7 @@
     [request addValue:@"audio/wav" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
-    [request addValue:confidence forHTTPHeaderField:@"VsitConfidence"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
     [request addValue:contentLanguage forHTTPHeaderField:@"ContentLanguage"];
     [request setHTTPBody:[[NSData alloc]
@@ -368,10 +329,9 @@
     [task resume];
 }
 
-- (void)authenticationByWavURL:(NSString *)email
+- (void)authenticationByWavURL:(NSString *)userId
                         passwd:(NSString *)passwd
         urlToAuthenticationWav:(NSString *)urlToAuthenticationWav
-                    confidence:(NSString *)confidence
                contentLanguage:(NSString *)contentLanguage
                       callback:(void (^)(NSString *))callback
 {
@@ -383,8 +343,7 @@
     [request addValue:@"audio/wav" forHTTPHeaderField:@"Content-Type"];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request addValue:self.developerId forHTTPHeaderField:@"VsitDeveloperId"];
-    [request addValue:email forHTTPHeaderField:@"VsitEmail"];
-    [request addValue:confidence forHTTPHeaderField:@"VsitConfidence"];
+    [request addValue:userId forHTTPHeaderField:@"UserId"];
     [request addValue:[self sha256:passwd] forHTTPHeaderField:@"VsitPassword"];
     [request addValue:urlToAuthenticationWav forHTTPHeaderField:@"VsitwavURL"];
     [request addValue:contentLanguage forHTTPHeaderField:@"ContentLanguage"];

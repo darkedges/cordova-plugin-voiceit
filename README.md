@@ -10,7 +10,6 @@ For more information on VoiceIt and its features, see [the website](http://voice
 * [API Calls](#api-calls)
   * [Create User](#create-user)
   * [Set User](#set-user)
-  * [Get User](#get-user)
   * [Delete User](#delete-user)
   * [Create Enrollment](#create-enrollment)
   * [Get Enrollments](#get-enrollments)
@@ -41,32 +40,13 @@ Here are code snippets that show you how you can call the Various VoiceIt API Ca
 
 ### Create User
 
-To create a new user call the createUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), first name, last name
+To create a new user call the createUser function like this with the following parameters: developerID, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), first name, last name
 
 ```javascript
 VoiceIt.createUser({
   developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
-  password: "password",
-  firstName: "John",
-  lastName: "Doe"
-}, function(response) {
-  alert('Result: ' + response);
-}, function(error) {
-  alert('Error: ' + error);
-});
-```
-### Set User
-
-To update an existing user call the setUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), first name, last name
-
-```javascript
-VoiceIt.setUser({
-  developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
-  password: "password",
-  firstName: "John",
-  lastName: "Doe"
+  userId: "cordovaUserId",
+  password: "password"
 }, function(response) {
   alert('Result: ' + response);
 }, function(error) {
@@ -75,12 +55,12 @@ VoiceIt.setUser({
 ```
 ### Get User
 
-To retrieve an existing user call the getUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
+To retrieve an existing user call the getUser function like this with the following parameters: developerID, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
 
 ```javascript
 VoiceIt.getUser({
   developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
+  userId: "cordovaUserId",
   password: "password"
 }, function(response) {
   alert('Result: ' + response);
@@ -90,12 +70,12 @@ VoiceIt.getUser({
 ```
 ### Delete User
 
-To delete an existing user call the deleteUser function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
+To delete an existing user call the deleteUser function like this with the following parameters: developerID, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
 
 ```javascript
 VoiceIt.deleteUser({
   developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
+  userId: "cordovaUserId",
   password: "password"
 }, function(response) {
   alert('Result: ' + response);
@@ -105,7 +85,7 @@ VoiceIt.deleteUser({
 ```
 ### Create Enrollment
 
-To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and optionally a content language.
+To create a new enrollment template for the specified user profile use the createEnrollment function like this with the following parameters: developerID, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and optionally a content language.
 
 Please Note: Unlike other wrappers, this createEnrollment function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Create Enrollment API call to send that audio file as an enrollment.
 
@@ -114,7 +94,7 @@ The recorder starts recording as soon as the createEnrollment function is called
 ```javascript
 VoiceIt.createEnrollment({
   developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
+  userId: "cordovaUserId",
   password: "password",
   contentLanguage: "en-US"
 }, function(response) {
@@ -126,12 +106,12 @@ VoiceIt.createEnrollment({
 
 ### Get Enrollments
 
-To get a list of the existing enrollments simply call the getEnrollments method for the specific user like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
+To get a list of the existing enrollments simply call the getEnrollments method for the specific user like this with the following parameters: developerID, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you)
 
 ```javascript
 VoiceIt.getEnrollments({
   developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
+  userId: "cordovaUserId",
   password: "password"
 }, function(response) {
   alert('Result: ' + response);
@@ -141,12 +121,12 @@ VoiceIt.getEnrollments({
 ```
 ### Delete Enrollment
 
-To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: developerID, email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), enrollmentId
+To delete an enrollment simply call the deleteEnrollment method for the specific user like this with the following parameters: developerID, userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), enrollmentId
 
 ```javascript
 VoiceIt.deleteEnrollment({
   developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
+  userId: "cordovaUserId",
   password: "password",
   enrollmentId:"2461"
 }, function(response) {
@@ -166,9 +146,7 @@ Please Note: The Voiceprint Phrase's (VPP's) are Text-Dependent. The Minimum len
 
 To manage the VPPs associated with your DeveloperID, please login to the developer portal and navigate to Voiceprint Phrases section.
 
-To authenticate the user profile use the authentication method like this with the following parameters: email, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you), confidence level (between 85-100), and optionally content language.
-
-We recommend calling with 5 for accuracy, 10 for accuracy passes, 5 for accuracy pass increment, and 85 for confidence. This allows multiple attempts at secure authentication without having to re-record and send the voiceprint phrase.  You can also use DetectedVoiceprintText and DetectedTextConfidence to help decide which authentication to keep or throw out and have the user record again based on speech text detected and its confidence.
+To authenticate the user profile use the authentication method like this with the following parameters: userId, password(not encrypted, just in text form the plugin encrypts the password using SHA256 for you) and optionally content language.
 
 Please Note: Unlike other wrappers, this authentication function actually has recording inbuilt(supporting both Android and iOS platforms), it records the user saying their VoicePrint phrase for 5 seconds and then makes the Authentication API call to send that audio file in for authentication.
 
@@ -177,9 +155,8 @@ The recorder starts recording as soon as the authentication function is called, 
 ```javascript
 VoiceIt.authentication({
   developerID: "DEVELOPER_ID_HERE",
-  email: "cordova@voiceit-tech.com",
+  userId: "cordovaUserId",
   password: "password",
-  confidence: "85",
   contentLanguage: "en-US"
 }, function(response) {
   alert('Result: ' + response);

@@ -45,7 +45,7 @@ public class VoiceIt {
         }
     }
 
-    public String getUser(final String email,final String password){
+    public String getUser(final String userId,final String password){
 
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -55,7 +55,7 @@ public class VoiceIt {
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setDoInput(true);
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     String response = "";
@@ -100,7 +100,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String createUser(final String email,final String password,final String firstName, final String lastName){
+    public String createUser(final String userId,final String password){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -111,10 +111,8 @@ public class VoiceIt {
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
-                    urlConnection.addRequestProperty("VsitFirstName", firstName);
-                    urlConnection.addRequestProperty("VsitLastName", lastName);
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     String response = "";
                     try {
@@ -158,65 +156,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String setUser(final String email,final String password,final String firstName, final String lastName){
-        theResponse = "";
-        class RunAPICall extends AsyncTask<String, Void, String> {
-            @Override
-            protected String doInBackground(String... params) {
-                try{
-                    URL url = new URL(host+"users");
-                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                    urlConnection.setDoInput(true);
-                    urlConnection.setRequestMethod("PUT");
-                    urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
-                    urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
-                    urlConnection.addRequestProperty("VsitFirstName", firstName);
-                    urlConnection.addRequestProperty("VsitLastName", lastName);
-                    urlConnection.addRequestProperty("VsitDeveloperId", developerId);
-                    String response = "";
-                    try {
-                        ByteArrayOutputStream out = new ByteArrayOutputStream();
-                        InputStream in;
-                        if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                            in = urlConnection.getInputStream();
-                        }
-                        else
-                        {
-                            in = urlConnection.getErrorStream();
-                        }
-
-                        int bytesRead = 0;
-                        byte[] buffer = new byte[1024];
-                        while ((bytesRead = in.read(buffer)) > 0) {
-                            out.write(buffer, 0, bytesRead);
-                        }
-                        out.close();
-                        response = new String(out.toByteArray());
-                        theResponse = response;
-                    } finally {
-                        urlConnection.disconnect();
-                    }
-
-                }
-                catch(IOException ioe)
-                {
-                    System.out.println("BACKGROUND FAILED");
-                }
-                return null;
-            }
-        }
-        try {
-            new RunAPICall().execute().get();
-        }
-        catch(Exception e)
-        {
-            return "{\"Result\":\"Internal Server Error\"}";
-        }
-        return theResponse;
-    }
-
-    public String deleteUser(final String email,final String password){
+    public String deleteUser(final String userId,final String password){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -227,7 +167,7 @@ public class VoiceIt {
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("DELETE");
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     String response = "";
@@ -272,7 +212,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String createEnrollment(final String email,final String password,final String pathToEnrollmentWav, final String contentLanguage){
+    public String createEnrollment(final String userId,final String password,final String pathToEnrollmentWav, final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -283,7 +223,7 @@ public class VoiceIt {
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     urlConnection.addRequestProperty("ContentLanguage", contentLanguage);
@@ -347,7 +287,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String createEnrollmentByWavURL(final String email,final String password,final String urlToEnrollmentWav,final String contentLanguage){
+    public String createEnrollmentByWavURL(final String userId,final String password,final String urlToEnrollmentWav,final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -358,7 +298,7 @@ public class VoiceIt {
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     urlConnection.setRequestProperty("Content-Type", "audio/wav");
@@ -407,7 +347,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String getEnrollments(final String email,final String password){
+    public String getEnrollments(final String userId,final String password){
 
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -418,7 +358,7 @@ public class VoiceIt {
                     urlConnection.setRequestMethod("GET");
                     urlConnection.setDoInput(true);
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     String response = "";
@@ -463,7 +403,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String getEnrollmentCount(final String email,final String password, final String vppText){
+    public String getEnrollmentCount(final String userId,final String password, final String vppText){
 
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -474,7 +414,7 @@ public class VoiceIt {
                     urlConnection.setRequestMethod("GET");
                     urlConnection.setDoInput(true);
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     urlConnection.addRequestProperty("VppText", vppText);
@@ -520,7 +460,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String deleteEnrollment(final String email,final String password,final String enrollmentId){
+    public String deleteEnrollment(final String userId,final String password,final String enrollmentId){
 
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -531,7 +471,7 @@ public class VoiceIt {
                     urlConnection.setRequestMethod("DELETE");
                     urlConnection.setDoInput(true);
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
                     String response = "";
@@ -576,7 +516,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String authentication(final String email,final String password,final String pathToAuthenticationWav, final String confidence, final String contentLanguage){
+    public String authentication(final String userId,final String password,final String pathToAuthenticationWav, final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -587,10 +527,9 @@ public class VoiceIt {
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
-                    urlConnection.addRequestProperty("VsitConfidence", confidence);
                     urlConnection.addRequestProperty("ContentLanguage", contentLanguage);
                     urlConnection.setRequestProperty("Content-Type", "audio/wav");
                     File file =  new File(pathToAuthenticationWav);
@@ -653,7 +592,7 @@ public class VoiceIt {
         return theResponse;
     }
 
-    public String authenticationByWavURL(final String email,final String password,final String urlToAuthenticationWav, final String confidence, final String contentLanguage){
+    public String authenticationByWavURL(final String userId,final String password,final String urlToAuthenticationWav, final String contentLanguage){
         theResponse = "";
         class RunAPICall extends AsyncTask<String, Void, String> {
             @Override
@@ -664,10 +603,9 @@ public class VoiceIt {
                     urlConnection.setDoInput(true);
                     urlConnection.setRequestMethod("POST");
                     urlConnection.addRequestProperty("PlatformID", platformId);
-                    urlConnection.addRequestProperty("VsitEmail", email);
+                    urlConnection.addRequestProperty("UserId", userId);
                     urlConnection.addRequestProperty("VsitPassword", GetSHA256(password));
                     urlConnection.addRequestProperty("VsitDeveloperId", developerId);
-                    urlConnection.addRequestProperty("VsitConfidence", confidence);
                     urlConnection.setRequestProperty("ContentLanguage", contentLanguage);
                     urlConnection.setRequestProperty("Content-Type", "audio/wav");
                     urlConnection.setRequestProperty("VsitwavURL", urlToAuthenticationWav);

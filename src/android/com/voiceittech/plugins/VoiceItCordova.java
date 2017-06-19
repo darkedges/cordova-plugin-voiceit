@@ -44,14 +44,7 @@ public class VoiceItCordova extends CordovaPlugin {
 
     if (action.equals("createUser")) {
       VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
-      String response = myVoiceIt.createUser(args.getString(1),args.getString(2),args.getString(3),args.getString(4));
-      callbackContext.success(response);
-      return true;
-    }
-
-    if (action.equals("setUser")) {
-      VoiceIt myVoiceIt = new VoiceIt(args.getString(0));
-      String response = myVoiceIt.setUser(args.getString(1),args.getString(2),args.getString(3),args.getString(4));
+      String response = myVoiceIt.createUser(args.getString(1),args.getString(2));
       callbackContext.success(response);
       return true;
     }
@@ -154,7 +147,7 @@ public class VoiceItCordova extends CordovaPlugin {
         public void onTick(long millisUntilFinished) {}
         public void onFinish() {
           try{
-            stopRecordAuthentication(callbackContext, args.getString(0), args.getString(1), args.getString(2),args.getString(3), args.getString(4));
+            stopRecordAuthentication(callbackContext, args.getString(0), args.getString(1), args.getString(2),args.getString(3));
           } catch(Exception ex){
             System.out.println("Exception Error:"+ex.getMessage());
           }
@@ -201,7 +194,7 @@ public class VoiceItCordova extends CordovaPlugin {
     return false;
   }
 
-  private void stopRecordEnrollment(final CallbackContext callbackContext,final String developerID, final String email,final String password, final String contentLanguage){
+  private void stopRecordEnrollment(final CallbackContext callbackContext,final String developerID, final String userId,final String password, final String contentLanguage){
     myRecorder.stop();
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
@@ -209,7 +202,7 @@ public class VoiceItCordova extends CordovaPlugin {
         String response = "";
         try{
         VoiceIt myVoiceIt = new VoiceIt(developerID);
-        response = myVoiceIt.createEnrollment(email, password, outputFile, contentLanguage);
+        response = myVoiceIt.createEnrollment(userId, password, outputFile, contentLanguage);
         } catch(Exception ex){
         System.out.println("Exception Error:"+ex.getMessage());
        }
@@ -218,7 +211,7 @@ public class VoiceItCordova extends CordovaPlugin {
     });
   }
 
-  private void stopRecordAuthentication(final CallbackContext callbackContext, final String developerID, final String email,final String password, final String confidence, final String contentLanguage){
+  private void stopRecordAuthentication(final CallbackContext callbackContext, final String developerID, final String userId,final String password, final String contentLanguage){
     myRecorder.stop();
     myRecorder.release();
     cordova.getThreadPool().execute(new Runnable() {
@@ -226,7 +219,7 @@ public class VoiceItCordova extends CordovaPlugin {
         String response = "";
         try{
           VoiceIt myVoiceIt = new VoiceIt(developerID);
-          response = myVoiceIt.authentication(email,password, outputFile, confidence, contentLanguage);
+          response = myVoiceIt.authentication(userId,password, outputFile, contentLanguage);
         } catch(Exception ex){
           System.out.println("Exception Error:"+ex.getMessage());
         }

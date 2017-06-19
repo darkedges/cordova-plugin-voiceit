@@ -166,22 +166,6 @@
   [myVoiceIt
      createUser:[_command.arguments objectAtIndex:1]
       passwd:[_command.arguments objectAtIndex:2]
-      firstName:[_command.arguments objectAtIndex:3]
-       lastName:[_command.arguments objectAtIndex:4]
-    callback:^(NSString *result) {
-      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:result];
-      [self.commandDelegate sendPluginResult:pluginResult callbackId:_command.callbackId];
-    }];
-}
-
-- (void)setUser:(CDVInvokedUrlCommand*)command {
-  _command = command;
-  VoiceIt *myVoiceIt = [[VoiceIt alloc] init:[_command.arguments objectAtIndex:0]];
-  [myVoiceIt
-     setUser:[_command.arguments objectAtIndex:1]
-      passwd:[_command.arguments objectAtIndex:2]
-      firstName:[_command.arguments objectAtIndex:3]
-       lastName:[_command.arguments objectAtIndex:4]
     callback:^(NSString *result) {
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:result];
       [self.commandDelegate sendPluginResult:pluginResult callbackId:_command.callbackId];
@@ -269,8 +253,7 @@
              authentication:[_command.arguments objectAtIndex:1]
                      passwd:[_command.arguments objectAtIndex:2]
     pathToAuthenticationWav:recorderFilePath
-                 confidence:[_command.arguments objectAtIndex:3]
-            contentLanguage:[_command.arguments objectAtIndex:4]
+            contentLanguage:[_command.arguments objectAtIndex:3]
 
 
                    callback:^(NSString *result) {

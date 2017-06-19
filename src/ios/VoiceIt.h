@@ -19,59 +19,50 @@
 - (id)init:(NSString *)developerId;
 
 // User API Calls
-- (void)getUser:(NSString *)email
+- (void)getUser:(NSString *)userId
          passwd:(NSString *)passwd
        callback:(void (^)(NSString *))callback;
-- (void)createUser:(NSString *)email
-            passwd:(NSString *)passwd
-         firstName:(NSString *)firstName
-          lastName:(NSString *)lastName
-          callback:(void (^)(NSString *))callback;
-- (void)setUser:(NSString *)email
-         passwd:(NSString *)passwd
-      firstName:(NSString *)firstName
-       lastName:(NSString *)lastName
-       callback:(void (^)(NSString *))callback;
-- (void)deleteUser:(NSString *)email
+- (void)createUser:(NSString *)userId
             passwd:(NSString *)passwd
           callback:(void (^)(NSString *))callback;
-- (void)getEnrollments:(NSString *)email
+- (void)deleteUser:(NSString *)userId
+            passwd:(NSString *)passwd
+          callback:(void (^)(NSString *))callback;
+- (void)getEnrollments:(NSString *)userId
                 passwd:(NSString *)passwd
               callback:(void (^)(NSString *))callback;
-- (void)getEnrollmentsCount:(NSString *)email
+- (void)getEnrollmentsCount:(NSString *)userId
                      passwd:(NSString *)passwd
                     vppText:(NSString *)vppText
                    callback:(void (^)(NSString *))callback;
 
 // Enrollments API Calls
-- (void)createEnrollment:(NSString *)email
+- (void)createEnrollment:(NSString *)userId
                   passwd:(NSString *)passwd
      pathToEnrollmentWav:(NSString *)pathToEnrollmentWav
          contentLanguage:(NSString *)contentLanguage
                 callback:(void (^)(NSString *))callback;
-- (void)createEnrollmentByWavURL:(NSString *)email
+- (void)createEnrollmentByWavURL:(NSString *)userId
                           passwd:(NSString *)passwd
               urlToEnrollmentWav:(NSString *)urlToEnrollmentWav
                  contentLanguage:(NSString *)contentLanguage
                         callback:(void (^)(NSString *))callback;
 
-- (void)deleteEnrollment:(NSString *)email
+- (void)deleteEnrollment:(NSString *)userId
                   passwd:(NSString *)passwd
             enrollmentId:(NSString *)enrollmentId
                 callback:(void (^)(NSString *))callback;
 
 // Authentication API Calls
-- (void)authentication:(NSString *)email
+- (void)authentication:(NSString *)userId
                      passwd:(NSString *)passwd
     pathToAuthenticationWav:(NSString *)pathToAuthenticationWav
-                 confidence:(NSString *)confidence
             contentLanguage:(NSString *)contentLanguage
                    callback:(void (^)(NSString *))callback;
 
-- (void)authenticationByWavURL:(NSString *)email
+- (void)authenticationByWavURL:(NSString *)userId
                         passwd:(NSString *)passwd
         urlToAuthenticationWav:(NSString *)urlToAuthenticationWav
-                    confidence:(NSString *)confidence
                contentLanguage:(NSString *)contentLanguage
                       callback:(void (^)(NSString *))callback;
 @end
