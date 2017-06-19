@@ -27,10 +27,10 @@ To use the VoiceIt Cordova Plugin in your Cordova Project, if you haven't alread
 
 ## Installation
 
-First please cd into your Cordova App's root directory via the terminal/command line and then run the following command:
+First please cd into your Cordova App's root directory via the terminal/command line and then run the following command, you can add your own micrphone usage description, this is required for recording on the ios platform, and description is shown to the user when requesting access to the mic:
 
 ```bash
-$ cordova plugin add cordova-plugin-voiceit
+$ cordova plugin add cordova-plugin-voiceit --variable MICROPHONE_USAGE_DESCRIPTION="This app needs to access to your microphone for voice biometrics"
 ```
 
 ## API Calls
