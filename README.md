@@ -9,7 +9,6 @@ For more information on VoiceIt and its features, see [the website](http://voice
 * [Installation](#installation)
 * [API Calls](#api-calls)
   * [Create User](#create-user)
-  * [Set User](#set-user)
   * [Delete User](#delete-user)
   * [Create Enrollment](#create-enrollment)
   * [Get Enrollments](#get-enrollments)
